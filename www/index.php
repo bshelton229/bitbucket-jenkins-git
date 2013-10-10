@@ -9,7 +9,7 @@ $config = json_decode(file_get_contents(__DIR__.'/../config.json'));
 $payload = isset($_POST['payload']) ? $_POST['payload'] : false;
 
 if ($payload && $config && isset($config->service_url)) {
-  $git_notify = new GitNotifyCommit($config, FALSE);
+  $git_notify = new GitNotifyCommit($config, $payload);
   // Trigger a url hit
   $git_notify->trigger();
 }
