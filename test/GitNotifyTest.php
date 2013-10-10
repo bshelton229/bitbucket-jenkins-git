@@ -40,13 +40,4 @@ class GitNotifyTest extends PHPUnit_Framework_TestCase
       $git_notify->getTriggerUrl()
     );
   }
-
-  public function testPublicRepoUrl() {
-    $git_notify = new GitNotifyCommit($this->getConfig(), $this->getPayload('public'));
-    $this->assertFalse($git_notify->payload->repository->is_private);
-    $this->assertEquals(
-      'https://bitbucket.org/bshelton229/test-service-hook.git',
-      $git_notify->getRepoUrl()
-    );
-  }
 }
