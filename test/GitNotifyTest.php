@@ -5,12 +5,12 @@ use BitBucket\Hook\Jenkins\GitNotifyCommit;
 class GitNotifyTest extends PHPUnit_Framework_TestCase
 {
 
-  private function getPayload() {
-    return file_get_contents(__DIR__.'/support/payload.json');
+  private function getPayload($name='default') {
+    return file_get_contents(__DIR__.'/support/'.$name.'_payload.json');
   }
 
-  private function getConfig() {
-    return json_decode(file_get_contents(__DIR__.'/support/config.json'));
+  private function getConfig($name='default') {
+    return json_decode(file_get_contents(__DIR__.'/support/'.$name.'_config.json'));
   }
 
   private function getInstance() {
