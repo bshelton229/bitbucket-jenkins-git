@@ -42,7 +42,16 @@ class GitNotifyCommit {
    *  Return the repository url
    */
   public function getRepoUrl() {
-    return sprintf('git@bitbucket.org:%s/%s.git', $this->payload->repository->owner, $this->payload->repository->slug);
+    if (isset($this->payload->repository->is_private) && !$this->payload->repository->is_private) {
+      return sprintf('https://bitbucket.org/%s/%s.git',
+        $this->payload->repository->owner,
+        $this->payload->repository->slug);
+    }
+    else {
+      return sprintf('git@bitbucket.org:%s/%s.git',
+        $this->payload->repository->owner,
+        $this->payload->repository->slug);
+    }
   }
 
   /**
