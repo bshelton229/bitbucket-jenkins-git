@@ -36,7 +36,7 @@ class GitNotifyTest extends PHPUnit_Framework_TestCase
   public function testTriggerUrl() {
     $git_notify = $this->getInstance();
     $this->assertEquals(
-      'http://ci.jenkins-ci.org/git/commitHook/?url=git%40bitbucket.org%3Abshelton229%2Ftest-service-hook.git&branches=master',
+      'http://ci.jenkins-ci.org/git/notifyCommit/?url=git%40bitbucket.org%3Abshelton229%2Ftest-service-hook.git&branches=master',
       $git_notify->getTriggerUrl()
     );
   }

@@ -66,7 +66,7 @@ class GitNotifyCommit {
       'url' => $this->getRepoUrl(),
       'branches' => implode(',',$this->getBranches())
     ));
-    return $this->getServiceUrl() . '/git/commitHook/?' . $arg_string;
+    return $this->getServiceUrl() . '/git/notifyCommit/?' . $arg_string;
   }
 
   /**
