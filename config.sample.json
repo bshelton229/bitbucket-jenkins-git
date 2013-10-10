@@ -1,0 +1,4 @@
+{
+  "service_url":"http://ci.jenkins-ci.org/",
+  "repo_prefix":"https://bitbucket.org/"
+}
