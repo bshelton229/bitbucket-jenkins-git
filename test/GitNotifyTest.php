@@ -5,21 +5,19 @@ use BitBucket\Hook\Jenkins\GitNotifyCommit;
 class GitNotifyTest extends PHPUnit_Framework_TestCase
 {
 
+  private $jenkins_url = 'https://ci.jenkins-ci.org/';
+
   private function getPayload($name='default') {
     return file_get_contents(__DIR__.'/support/'.$name.'_payload.json');
   }
 
-  private function getConfig($name='default') {
-    return json_decode(file_get_contents(__DIR__.'/support/'.$name.'_config.json'));
-  }
-
   private function getInstance() {
-    return new GitNotifyCommit($this->getConfig(), $this->getPayload());
+    return new GitNotifyCommit($this->jenkins_url, $this->getPayload());
   }
 
   public function testConstruct() {
     $git_notify = $this->getInstance();
-    $this->assertEquals('http://ci.jenkins-ci.org', $git_notify->config->service_url);
+    $this->assertEquals('https://ci.jenkins-ci.org', $git_notify->jenkins_url);
     $this->assertObjectHasAttribute('commits', $git_notify->payload);
   }
 
@@ -36,7 +34,7 @@ class GitNotifyTest extends PHPUnit_Framework_TestCase
   public function testTriggerUrl() {
     $git_notify = $this->getInstance();
     $this->assertEquals(
-      'http://ci.jenkins-ci.org/git/notifyCommit/?url=git%40bitbucket.org%3Abshelton229%2Ftest-service-hook.git&branches=master',
+      'https://ci.jenkins-ci.org/git/notifyCommit/?url=git%40bitbucket.org%3Abshelton229%2Ftest-service-hook.git&branches=master',
       $git_notify->getTriggerUrl()
     );
   }

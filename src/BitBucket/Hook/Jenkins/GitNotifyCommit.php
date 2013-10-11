@@ -5,13 +5,13 @@ class GitNotifyCommit {
   /**
    * Load the class
    *
-   * @param $config array()
-   *  An array of configuration options
+   * @param $jenkins_url string
+   *  The URL jenkins is located at
    * @param $payload
    *  A JSON string from BitBucket
    */
-  public function __construct($config, $payload) {
-    $this->config = $config;
+  public function __construct($jenkins_url, $payload) {
+    $this->jenkins_url = preg_replace('#(/+)$#', '', $jenkins_url);
     $this->payload = FALSE;
     if ($payload) {
       $this->payload = json_decode($payload);
@@ -50,16 +50,6 @@ class GitNotifyCommit {
   }
 
   /**
-   * Return the service URL stripping any trailing slashes
-   *
-   * @return string
-   *  The service url as a string
-   */
-  public function getServiceUrl() {
-    return preg_replace('#(/)$#', '', $this->config->service_url);
-  }
-
-  /**
    * Get the trigger URL
    *
    * @return string
@@ -70,7 +60,7 @@ class GitNotifyCommit {
       'url' => $this->getRepoUrl(),
       'branches' => implode(',',$this->getBranches())
     ));
-    return $this->getServiceUrl() . '/git/notifyCommit/?' . $arg_string;
+    return $this->jenkins_url . '/git/notifyCommit/?' . $arg_string;
   }
 
   /**
