@@ -1,4 +1,4 @@
 ## Bitbucket Jenkins Git plugin hook wrapper ##
 
-A wrapper passing the Bitbucket standard POST service hook through
-to the Jenkins git plugin's git/commitHook.
+A wrapper to receive a Bitbucket POST service hook, format it, and
+forward it to a Jenkins Git plugin notifyCommit url.
