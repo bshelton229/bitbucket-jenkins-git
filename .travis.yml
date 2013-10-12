@@ -4,4 +4,4 @@ php:
   - 5.4
   - 5.5
 before_script: php ./composer.phar install
-script: ./vendor/binn/phpunit
+script: ./vendor/bin/phpunit
