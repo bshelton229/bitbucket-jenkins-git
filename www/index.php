@@ -18,10 +18,8 @@ elseif (file_exists(__DIR__.'/../config.json')) {
   }
 }
 
-print $jenkins_url;
-
-if (isset($_GET['jenkins_url']) && isset($_POST['payload'])) {
-  $git_notify = new GitNotifyCommit($_GET['jenkins_url'], $_POST['payload']);
+if ($jenkins_url && isset($_POST['payload'])) {
+  $git_notify = new GitNotifyCommit($jenkins_url, $_POST['payload']);
   // Trigger a url hit
   $git_notify->trigger();
 }
