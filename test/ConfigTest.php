@@ -28,4 +28,10 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
     $config = new Config(__DIR__.'/support/test_config.json');
     $this->assertEquals('http://param.com', $config->get('jenkins_url'));
   }
+
+  public function testMissingConfigFile() {
+    putenv('JENKINS_URL=http://env.com');
+    $config = new Config(__DIR__.'/missing.json');
+    $this->assertEquals('http://env.com', $config->get('jenkins_url'));
+  }
 }
